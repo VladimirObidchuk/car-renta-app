@@ -1,31 +1,89 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Fonts */
+  --font-1: "Manrope", sans-serif;
+  --font-2: "Inter", sans-serif;
+
+  /* Font sizes */
+  --font-size-base: 16px;
+  --font-size-btn: 16px;
+
+  /* Font weights */
+  --font-weight-regular: 400;
+  --font-weight-bold: 600;
+  --font-weight-semiBold: 700;
+
+  /* Colors */
+  --color-primary: #fff;
+  --color-text: #101828;
+
+  /* Backgrounds */
+  --bg-color-btn: #0b44cd;
+  --bg-color-active-btn: #3470ff;
+  --bg-color-selector: #f7f7f7;
+}
+/*======================*/
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  line-height: 1.25;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+body {
+  font-family: var(--font-1);
   line-height: 1.5;
-  font-weight: 400;
+  margin: 0;
+  height: 100%;
+  background: var(--color-primary);
+  padding: 0 120px;
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+main {
+  display: block;
+  flex: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  border-style: none; /* IE10 fix */
+}
+
+.button:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  text-decoration: none;
 }
