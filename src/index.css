@@ -17,8 +17,8 @@
   --color-text: #101828;
 
   /* Backgrounds */
-  --bg-color-btn: #0b44cd;
-  --bg-color-active-btn: #3470ff;
+  --bg-color-btn: #3470ff;
+  --bg-color-active-btn: #0b44cd;
   --bg-color-selector: #f7f7f7;
 }
 /*======================*/
@@ -29,6 +29,8 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  max-width: 1440px;
 }
 
 html {
@@ -42,7 +44,6 @@ body {
   margin: 0;
   height: 100%;
   background: var(--color-primary);
-  padding: 0 120px;
 }
 
 #root {
@@ -86,4 +87,8 @@ img {
 
 a {
   text-decoration: none;
+}
+.container {
+  padding-left: 120px;
+  padding-right: 120px;
 }

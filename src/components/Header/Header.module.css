@@ -3,5 +3,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 26px 0;
+  padding-top: 26px;
+  padding-bottom: 26px;
 }

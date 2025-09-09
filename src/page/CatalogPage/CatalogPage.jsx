@@ -1,7 +1,19 @@
-import style from "./CatalogPage.module.css";
+import { useSelector } from "react-redux";
+import CarsList from "../../components/CarsList/CarsList";
+import { selectCarsIsLoading } from "../../redux/catalog/selectors";
+import Loader from "../../components/Loader/Loader";
 
-import React from "react";
+import style from "./CatalogPage.module.css";
+import Filters from "../../components/Filter/Filter";
 
 export default function CatalogPage() {
-  return <div className={style.title}>CatalogPage</div>;
+  const isLoading = useSelector(selectCarsIsLoading);
+  return (
+    <>
+      <div className={style.filter}>
+        <Filters />
+      </div>
+      {isLoading ? <Loader /> : <CarsList />}
+    </>
+  );
 }

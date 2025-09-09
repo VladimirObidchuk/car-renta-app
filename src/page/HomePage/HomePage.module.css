@@ -1,0 +1,59 @@
+.hero {
+  background-image: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2)
+    ),
+    image-set(url("/src/shared/bg-hero.png") 1x);
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  font: var(--font-1);
+  color: var(--color-primary);
+}
+@media (min-resolution: 2dppx) {
+  .hero {
+    background-image: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.2) 100%,
+        rgba(0, 0, 0, 0.2) 100%
+      ),
+      image-set(url("/src/shared/bg-hero@2x.png") 2x);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+.title {
+  font: var(--font-1);
+  font-weight: 700;
+  font-size: 60px;
+  text-align: center;
+  width: 783px;
+  line-height: 1.2;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  padding-bottom: 60px;
+  width: 100%;
+}
+.text {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  margin-bottom: 40px;
+}
+.btn {
+  border: none;
+  overflow: hidden;
+  border-radius: 12px;
+  padding: 12px 99px;
+  background-color: var(--bg-color-btn);
+  color: var(--color-primary);
+  outline: none;
+}
+.btn:hover {
+  background-color: var(--bg-color-active-btn);
+}
