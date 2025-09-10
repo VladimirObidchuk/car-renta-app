@@ -1,0 +1,30 @@
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 28px;
+  row-gap: 48px;
+  margin-bottom: 80px;
+}
+.item {
+  width: calc((100% - 84px) / 4);
+  height: 424px;
+}
+.loadMore {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.btnLoadMo {
+  background-color: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--bg-color-btn);
+  border-radius: 12px;
+  padding: 12px 51px;
+  margin-bottom: 124px;
+  cursor: pointer;
+}
+.btnLoadMo:hover {
+  border-color: var(--bg-color-active-btn);
+  background-color: transparent;
+}

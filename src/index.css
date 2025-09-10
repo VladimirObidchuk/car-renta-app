@@ -15,6 +15,7 @@
   /* Colors */
   --color-primary: #fff;
   --color-text: #101828;
+  --color-desc-text: #8d929a;
 
   /* Backgrounds */
   --bg-color-btn: #3470ff;
@@ -25,8 +26,6 @@
 html,
 body,
 #root {
-  width: 100%;
-  height: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -37,6 +36,7 @@ html {
   line-height: 1.25;
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
+  margin: 0 auto;
 }
 body {
   font-family: var(--font-1);
@@ -91,4 +91,15 @@ a {
 .container {
   padding-left: 120px;
   padding-right: 120px;
+}
+.btn {
+  border: none;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: var(--bg-color-btn);
+  color: var(--color-primary);
+  outline: none;
+}
+.btn:hover {
+  background-color: var(--bg-color-active-btn);
 }

@@ -3,10 +3,10 @@ import apiClient from "../../api/api";
 
 export const fetchCatalogsCars = createAsyncThunk(
   "/catalogfetchCarsAll",
-  async (filters = {}, thunkApi) => {
+  async ({ page = 1, filters = {} }, thunkApi) => {
     try {
       const res = await apiClient.get("/cars", {
-        params: filters,
+        params: { page, ...filters },
       });
       console.log("🚀 ~ res:", res);
       return res.data;

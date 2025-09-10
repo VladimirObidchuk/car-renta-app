@@ -14,23 +14,23 @@ const catalogSlice = createSlice({
     error: null,
     isLoading: false,
   },
-  reducers: {
-    resetCatalogCars: (state) => {
-      state.items = [];
-      state.page = 1;
-      state.error = null;
-      state.isLoading = false;
-    },
-  },
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchCatalogsCars.pending, handlePending)
       .addCase(fetchCatalogsCars.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = false;
-        const data = action.payload.data || action.payload;
-        state.items = data.cars;
+        // const data = action.payload.data || action.payload;
+        const data = action.payload;
+        if (Number(data.page) === 1) {
+          state.items = data.cars;
+        } else {
+          state.items = [...state.items, ...data.cars];
+        }
         state.totalCars = action.payload.totalCars;
+        state.page = Number(data.page);
+        state.totalPages = data.totalPages;
       })
       .addCase(fetchCatalogsCars.rejected, handleError);
   },
