@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { handleError, handlePending } from "../../utils/reduxUtils";
-import { fetchCatalogsCars } from "./operations";
+import { fetchCarsForId, fetchCatalogsCars } from "./operations";
 
 const catalogSlice = createSlice({
   name: "cars",
@@ -13,6 +13,7 @@ const catalogSlice = createSlice({
     loading: false,
     error: null,
     isLoading: false,
+    currentCar: null,
   },
 
   extraReducers: (builder) => {
@@ -21,7 +22,6 @@ const catalogSlice = createSlice({
       .addCase(fetchCatalogsCars.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = false;
-        // const data = action.payload.data || action.payload;
         const data = action.payload;
         if (Number(data.page) === 1) {
           state.items = data.cars;
@@ -32,7 +32,13 @@ const catalogSlice = createSlice({
         state.page = Number(data.page);
         state.totalPages = data.totalPages;
       })
-      .addCase(fetchCatalogsCars.rejected, handleError);
+      .addCase(fetchCatalogsCars.rejected, handleError)
+      .addCase(fetchCarsForId.pending, handlePending)
+      .addCase(fetchCarsForId.fulfilled, (state, { payload }) => {
+        state.error = false;
+        state.currentCar = payload;
+      })
+      .addCase(fetchCarsForId.rejected, handleError);
   },
 });
 

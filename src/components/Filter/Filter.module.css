@@ -1,4 +1,66 @@
+.filtersBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: flex-end;
+  margin-bottom: 56px;
+}
+.content {
+  margin-bottom: 56px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 16px;
+}
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 204px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33;
+  color: var(--color-desc-text);
+}
+.milesBlock {
+  display: flex;
+  flex-direction: row;
+}
+.labelMiles {
+  width: 320px;
+
+  flex-direction: column;
+}
+.inputMiles {
+  width: 160px;
+  height: 44px;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-text);
+  background-color: var(--bg-color-selector);
+}
+.inputMiles::placeholder {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-text);
+  padding-left: 24px;
+}
+.inputMiles:first-child {
+  border-right: 1px solid var(--color-border-input);
+}
+
+.brandSelect {
+  width: 100%;
+  max-height: 200px;
+}
+
 .btn {
   padding: 12px 51px;
   cursor: pointer;
+  display: block;
+  height: 44px;
 }

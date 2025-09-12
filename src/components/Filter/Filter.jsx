@@ -12,6 +12,9 @@ import { selectBrands } from "../../redux/brands/selectors";
 import Buttom from "../Buttom/Buttom";
 import { useEffect } from "react";
 import { fetchBrands } from "../../redux/brands/operation";
+import Select from "react-select";
+import Selector from "../Select/Select";
+import clsx from "clsx";
 
 export default function Filters() {
   const dispatch = useDispatch();
@@ -22,38 +25,65 @@ export default function Filters() {
     dispatch(fetchBrands());
   }, [dispatch]);
 
+  const brandOptions = brands.map((brand) => ({
+    value: brand,
+    label: brand,
+  }));
+
+  const handleBrandChange = (selectedOption) => {
+    dispatch(setBrand(selectedOption ? selectedOption.value : ""));
+  };
+
   const handleSearch = () => {
     dispatch(fetchCatalogsCars({ page: 1, filters: filtersQuery }));
   };
 
+  const priceOptions = Array.from({ length: 8 }, (_, i) => {
+    const value = 30 + i * 10; // 30, 40, 50 ... 100
+    return { value, label: value.toString() };
+  });
+
   return (
-    <div>
-      <select
-        value={filtersQuery.brand || ""}
-        onChange={(e) => dispatch(setBrand(e.target.value))}
-      >
-        <option value="">All brands</option>
-        {brands.map((b) => (
-          <option key={b} value={b}>
-            {b}
-          </option>
-        ))}
-      </select>
-      <input
-        type="text"
-        placeholder="Max price"
-        onChange={(e) => dispatch(setRentaPrice(e.target.value))}
-      />
-      <input
-        type="text"
-        placeholder="Min mileage"
-        onChange={(e) => dispatch(setMinMileage(e.target.value))}
-      />
-      <input
-        type="text"
-        placeholder="Max mileage"
-        onChange={(e) => dispatch(setMaxMileage(e.target.value))}
-      />
+    <div className={style.filtersBlock}>
+      <label className={style.label}>
+        Car brand
+        <Selector
+          options={brandOptions}
+          value={filtersQuery.brand}
+          onChange={handleBrandChange}
+          placeHolderValue="Choose a brand"
+        />
+      </label>
+      <label className={style.label}>
+        Price/ 1 hour
+        <Selector
+          options={priceOptions}
+          value={filtersQuery.rentalPrice}
+          onChange={(selected) =>
+            dispatch(setRentaPrice(selected ? selected.value : ""))
+          }
+          placeHolderValue="Choose a price"
+        />
+      </label>
+
+      <label className={clsx(style.label, style.labelMiles)}>
+        Car mileage / km
+        <div className={style.milesBlock}>
+          <input
+            className={clsx(style.inputMiles)}
+            type="text"
+            placeholder="From"
+            onChange={(e) => dispatch(setMinMileage(e.target.value))}
+          />
+          <input
+            className={style.inputMiles}
+            type="text"
+            placeholder="To"
+            onChange={(e) => dispatch(setMaxMileage(e.target.value))}
+          />
+        </div>
+      </label>
+
       <Buttom
         type="button"
         onClick={handleSearch}

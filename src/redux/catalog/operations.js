@@ -15,3 +15,15 @@ export const fetchCatalogsCars = createAsyncThunk(
     }
   }
 );
+
+export const fetchCarsForId = createAsyncThunk(
+  "/fetchCarForId",
+  async (carId, thunkApi) => {
+    try {
+      const res = await apiClient.get(`/cars/${carId}`);
+      return res.data;
+    } catch (e) {
+      return thunkApi.rejectWithValue(e.message);
+    }
+  }
+);
