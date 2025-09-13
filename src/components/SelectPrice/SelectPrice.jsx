@@ -74,6 +74,7 @@ export default function SelectPrice({
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const selectRef = useRef(null);
 
+  // Закриття при кліку поза селектом
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (selectRef.current && !selectRef.current.contains(event.target)) {
@@ -101,10 +102,14 @@ export default function SelectPrice({
     onChange(
       selected ? { value: selected.value, label: selected.label } : null
     );
+    setMenuIsOpen(false); // закриваємо меню після вибору
   };
 
   return (
-    <div ref={selectRef}>
+    <div
+      ref={selectRef}
+      onClick={() => setMenuIsOpen((prev) => !prev)} // клік на весь контейнер перемикає меню
+    >
       <Select
         options={options}
         value={value}
@@ -114,8 +119,6 @@ export default function SelectPrice({
         menuPlacement="auto"
         maxMenuHeight={200}
         menuIsOpen={menuIsOpen}
-        onMenuOpen={() => setMenuIsOpen(true)}
-        onMenuClose={() => setMenuIsOpen(false)}
         components={{
           DropdownIndicator,
           IndicatorSeparator: () => null,
@@ -124,6 +127,7 @@ export default function SelectPrice({
         }}
         styles={customStyles}
         hoveredOption={hoveredOption}
+        selectProps={{ menuIsOpen, hoveredOption }}
         isSearchable={false}
       />
     </div>

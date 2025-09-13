@@ -36,7 +36,6 @@ const customStyles = {
 
 const DropdownIndicator = (props) => {
   const isOpen = props.selectProps.menuIsOpen;
-
   const styleObj = isOpen ? "isOpen" : "isClose";
 
   return (
@@ -76,6 +75,7 @@ export default function Selector({
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const selectRef = useRef(null);
 
+  // Закриття при кліку поза селектом
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (selectRef.current && !selectRef.current.contains(event.target)) {
@@ -100,7 +100,7 @@ export default function Selector({
   );
 
   return (
-    <div ref={selectRef}>
+    <div ref={selectRef} onClick={() => setMenuIsOpen((prev) => !prev)}>
       <Select
         options={options}
         value={value}
@@ -110,8 +110,6 @@ export default function Selector({
         menuPlacement="auto"
         maxMenuHeight={200}
         menuIsOpen={menuIsOpen}
-        onMenuOpen={() => setMenuIsOpen(true)}
-        onMenuClose={() => setMenuIsOpen(false)}
         components={{
           DropdownIndicator,
           IndicatorSeparator: () => null,
@@ -121,7 +119,6 @@ export default function Selector({
         styles={customStyles}
         hoveredOption={hoveredOption}
         isSearchable={false}
-        selectProps={{ menuIsOpen, hoveredOption }}
       />
     </div>
   );
