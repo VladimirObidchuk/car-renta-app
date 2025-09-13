@@ -8,18 +8,19 @@ import {
   resetFilters,
 } from "../../redux/filter/slice";
 import { fetchCatalogsCars } from "../../redux/catalog/operations";
-import { selectFiltersQuery } from "../../redux/filter/selectors";
+
 import { selectBrands } from "../../redux/brands/selectors";
 import Buttom from "../Buttom/Buttom";
 import { useEffect } from "react";
 import { fetchBrands } from "../../redux/brands/operation";
 import Selector from "../Select/Select";
 import clsx from "clsx";
+import SelectPrice from "../SelectPrice/SelectPrice";
 
 export default function Filters() {
   const dispatch = useDispatch();
   const brands = useSelector(selectBrands);
-  //   const filtersQuery = useSelector(selectFiltersQuery);
+
   const filtersQuery = useSelector((state) => state.filters);
 
   useEffect(() => {
@@ -77,7 +78,7 @@ export default function Filters() {
       </label>
       <label className={style.label}>
         Price/ 1 hour
-        <Selector
+        <SelectPrice
           key={filtersQuery.rentalPrice || "price"}
           options={priceOptions}
           value={
@@ -129,84 +130,3 @@ export default function Filters() {
     </div>
   );
 }
-// export default function Filters() {
-//   const dispatch = useDispatch();
-//   const filters = useSelector(selectFiltersQuery); // беремо весь state slice
-//   const brands = useSelector(selectBrands);
-
-//   useEffect(() => {
-//     dispatch(fetchBrands());
-//   }, [dispatch]);
-
-//   const brandOptions = brands.map((brand) => ({ value: brand, label: brand }));
-
-//   const handleBrandChange = (selectedOption) => {
-//     dispatch(setBrand(selectedOption ? selectedOption.value : ""));
-//   };
-
-//   const handlePriceChange = (selectedOption) => {
-//     dispatch(setRentalPrice(selectedOption ? selectedOption.value : ""));
-//   };
-
-//   const handleSearch = () => {
-//     // Тут ми передаємо увесь slice, тому всі значення (brand, rentalPrice, min/maxMileage)
-//     dispatch(fetchCatalogsCars({ page: 1, filters }));
-//   };
-
-//   const priceOptions = Array.from({ length: 8 }, (_, i) => {
-//     const value = 30 + i * 10;
-//     return { value: value.toString(), label: value.toString() };
-//   });
-
-//   return (
-//     <div className={style.filtersBlock}>
-//       <label className={style.label}>
-//         Car brand
-//         <Selector
-//           options={brandOptions}
-//           value={filters.brand}
-//           onChange={handleBrandChange}
-//           placeHolderValue="Choose a brand"
-//         />
-//       </label>
-
-//       <label className={style.label}>
-//         Price/ 1 hour
-//         <Selector
-//           options={priceOptions}
-//           value={filters.rentalPrice}
-//           onChange={handlePriceChange}
-//           placeHolderValue="Choose a price"
-//           isPrice={true}
-//         />
-//       </label>
-
-//       <label className={clsx(style.label, style.labelMiles)}>
-//         Car mileage / km
-//         <div className={style.milesBlock}>
-//           <input
-//             className={clsx(style.inputMiles)}
-//             type="text"
-//             placeholder="From"
-//             value={filters.minMileage}
-//             onChange={(e) => dispatch(setMinMileage(e.target.value))}
-//           />
-//           <input
-//             className={style.inputMiles}
-//             type="text"
-//             placeholder="To"
-//             value={filters.maxMileage}
-//             onChange={(e) => dispatch(setMaxMileage(e.target.value))}
-//           />
-//         </div>
-//       </label>
-
-//       <Buttom
-//         type="button"
-//         onClick={handleSearch}
-//         styleCss={style.btn}
-//         value="Search"
-//       />
-//     </div>
-//   );
-// }

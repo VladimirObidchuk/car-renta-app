@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Select, { components } from "react-select";
-import style from "./Select.module.css";
 import Icon from "../Icon/Icon";
 
 const customStyles = {
@@ -33,6 +32,7 @@ const customStyles = {
   }),
 };
 
+// Іконка
 const DropdownIndicator = (props) => {
   const styleObj = {
     transform: props.selectProps.menuIsOpen ? "rotate(180deg)" : "rotate(0deg)",
@@ -45,19 +45,18 @@ const DropdownIndicator = (props) => {
   );
 };
 
+// Кастомний ValueContainer (hover/вибір з "To $")
 const ValueContainer = ({ children, ...props }) => {
-  const { getValue, selectProps } = props;
+  const { getValue, selectProps, hasValue } = props;
   const hoveredOption = selectProps.hoveredOption;
 
-  const selected = getValue();
   let display;
-
   if (hoveredOption) {
-    display = hoveredOption.label;
-  } else if (selected.length > 0) {
-    display = selected[0]?.label;
+    display = `To $${hoveredOption.label}`; // при hover
+  } else if (hasValue) {
+    display = `To $${getValue()[0]?.label}`; // при виборі
   } else {
-    display = props.selectProps.placeholder;
+    display = props.selectProps.placeholder; // placeholder
   }
 
   return (
@@ -65,7 +64,7 @@ const ValueContainer = ({ children, ...props }) => {
   );
 };
 
-export default function Selector({
+export default function SelectPrice({
   options,
   value,
   placeHolderValue,
@@ -86,11 +85,18 @@ export default function Selector({
     </components.Option>
   );
 
+  // ⚡️ Redux має отримати тільки число
+  const handleChange = (selected) => {
+    onChange(
+      selected ? { value: selected.value, label: selected.label } : null
+    );
+  };
+
   return (
     <Select
       options={options}
       value={value}
-      onChange={onChange}
+      onChange={handleChange}
       classNamePrefix="react-select"
       placeholder={placeHolderValue}
       menuPlacement="auto"
