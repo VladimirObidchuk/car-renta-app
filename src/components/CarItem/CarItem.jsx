@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import style from "./CarItem.module.css";
 import { NavLink } from "react-router-dom";
+import Icon from "../Icon/Icon";
+import { useEffect, useState } from "react";
 
 export default function CarItem({
   rentalCompany,
@@ -18,12 +20,43 @@ export default function CarItem({
   const coutry = addresArg[2];
   const city = addresArg[1];
 
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem("favoritesCars") || "[]");
+    setIsFavorite(favorites.includes(carId));
+  }, [carId]);
+
+  const toggleFavorite = () => {
+    const favorites = JSON.parse(localStorage.getItem("favoritesCars") || "[]");
+    let updatedFavorites;
+
+    if (favorites.includes(carId)) {
+      updatedFavorites = favorites.filter((id) => id !== carId);
+      setIsFavorite(false);
+    } else {
+      updatedFavorites = [...favorites, carId];
+      setIsFavorite(true);
+    }
+
+    localStorage.setItem("favoritesCars", JSON.stringify(updatedFavorites));
+  };
+
   return (
     <div className={style.card}>
       <div className={style.imgCar}>
         <img src={image} alt={`${model} ${brand}`} className={style.img} />
         <div className={style.gradientOverlay}></div>
+
+        <Icon
+          width={32}
+          height={32}
+          name={isFavorite ? "heart-fill" : "heart"}
+          styleCss={style.icon}
+          onClick={toggleFavorite}
+        />
       </div>
+
       <div className={style.content}>
         <div className={style.titleContent}>
           <div className={style.leftSide}>

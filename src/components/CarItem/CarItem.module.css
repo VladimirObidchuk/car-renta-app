@@ -10,7 +10,22 @@
   overflow: hidden;
   height: 268px;
 }
+.icon {
+  position: absolute;
+  right: 0;
+  top: 16px;
+  z-index: 999;
+}
 
+.iconActive {
+  position: absolute;
+  right: 0;
+  top: 16px;
+  cursor: pointer;
+  stroke: var(--bg-color-active-btn);
+  transition: stroke 0.3s;
+  z-index: 999;
+}
 .img {
   height: 100%;
   object-fit: cover;
@@ -45,7 +60,6 @@
 }
 .titleContent {
   justify-content: space-between;
-  /* gap: 5px; */
 }
 
 .leftSide {

@@ -14,8 +14,8 @@ const filtersCatalogReduser = createSlice({
     setBrand: (state, action) => {
       state.brand = action.payload;
     },
-    setRentaPrice: (state, action) => {
-      state.rentaPrice = action.payload;
+    setRentalPrice: (state, action) => {
+      state.rentalPrice = action.payload;
     },
     setMinMileage: (state, action) => {
       state.minMileage = action.payload;
@@ -28,7 +28,7 @@ const filtersCatalogReduser = createSlice({
 });
 export const {
   setBrand,
-  setRentaPrice,
+  setRentalPrice,
   setMinMileage,
   setMaxMileage,
   resetFilters,

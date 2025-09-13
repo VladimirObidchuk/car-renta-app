@@ -4,6 +4,7 @@
   gap: 16px;
   align-items: flex-end;
   margin-bottom: 56px;
+  justify-content: center;
 }
 .content {
   margin-bottom: 56px;
@@ -20,11 +21,35 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 1.33;
+  border: none;
+
   color: var(--color-desc-text);
 }
-.milesBlock {
+
+.milesBlock,
+.inputLabelMiles {
   display: flex;
   flex-direction: row;
+}
+.milesBlock {
+  background-color: var(--bg-color-selector);
+  gap: 24px;
+  border-radius: 12px 0 0 12px;
+}
+
+.inputLabelMiles {
+  width: 160px;
+  height: 44px;
+  align-items: center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+  border: none;
+}
+.inputLabelMilesMin {
+  padding-left: 24px;
+  border-right: 1px solid var(--color-border-input);
 }
 .labelMiles {
   width: 320px;
@@ -32,8 +57,8 @@
   flex-direction: column;
 }
 .inputMiles {
-  width: 160px;
-  height: 44px;
+  width: 100%;
+  height: 100%;
   border: none;
   outline: none;
   font-weight: 500;
@@ -41,16 +66,6 @@
   line-height: 1.25;
   color: var(--color-text);
   background-color: var(--bg-color-selector);
-}
-.inputMiles::placeholder {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
-  color: var(--color-text);
-  padding-left: 24px;
-}
-.inputMiles:first-child {
-  border-right: 1px solid var(--color-border-input);
 }
 
 .brandSelect {

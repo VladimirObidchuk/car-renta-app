@@ -1,0 +1,80 @@
+.BookingForm {
+  width: 100%;
+  padding: 32px;
+  border: 1px solid var(--color-border-input);
+  border-radius: 10px;
+  position: relative;
+}
+
+.bookingTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+.bookingText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-desc-text);
+  margin-bottom: 24px;
+}
+.formBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.bokingBlockTextArea,
+.bokingBlockInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--bg-color-selector);
+  width: 100%;
+  border-radius: 12px;
+}
+.bokingBlockInput {
+  padding: 12px 20px;
+  gap: 8px;
+  position: relative;
+  width: 100%;
+}
+.bokingBlockTextArea {
+  align-items: flex-start;
+  padding: 12px 20px;
+}
+.bokingBlockLabel {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-desc-text);
+}
+.bokingInput,
+.bokingTextArea {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: var(--bg-color-selector);
+}
+.bokingTextArea {
+  padding: 0 20px;
+  height: 88px;
+  width: 100%;
+  resize: none;
+}
+.bokingBlockError {
+  position: absolute;
+  left: 18px;
+  bottom: -13px;
+}
+.btnForm {
+  width: 156px;
+  padding: 12px 58px;
+  align-self: center;
+}
+.succsess {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 20%);
+}
