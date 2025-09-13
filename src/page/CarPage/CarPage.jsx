@@ -76,7 +76,7 @@ export default function CarPage() {
           />
         </div>
         <div className={style.leftSideBottom}>
-          <BookingForm cardId={id} />
+          <BookingForm carId={id} />
         </div>
       </div>
       <div className={style.rightSide}>

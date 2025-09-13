@@ -35,7 +35,7 @@ export default function BookingForm({ carId }) {
     comment: Yup.string(),
   });
 
-  const handleSubmit = async (values, { resetForm, setFieldValue }) => {
+  const handleSubmit = async (values, { resetForm }) => {
     const bookingData = {
       carId,
       ...values,

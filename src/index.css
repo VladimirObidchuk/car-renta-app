@@ -104,3 +104,10 @@ a {
 .btn:hover {
   background-color: var(--bg-color-active-btn);
 }
+.isOpen {
+  transform: rotate(180deg);
+  transition: transform 0.5s ease;
+}
+.isClose {
+  transition: transform 0.5s ease;
+}

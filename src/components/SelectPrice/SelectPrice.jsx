@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Select, { components } from "react-select";
 import Icon from "../Icon/Icon";
 
@@ -10,6 +10,7 @@ const customStyles = {
     lineHeight: "1.25",
     textAlign: "center",
     color: "#101828",
+    cursor: "pointer", // 👈
   }),
   option: (provided, state) => ({
     ...provided,
@@ -18,7 +19,7 @@ const customStyles = {
     lineHeight: "1.25",
     color: state.isFocused ? "#101828" : "#8d929a",
     backgroundColor: "transparent",
-    cursor: "pointer",
+    cursor: "pointer", // 👈
   }),
   control: (provided) => ({
     ...provided,
@@ -28,16 +29,16 @@ const customStyles = {
     color: "#101828",
     border: "none",
     boxShadow: "none",
+    cursor: "pointer", // 👈
     "&:hover": { border: "none", backgroundColor: "#f7f7f7" },
   }),
 };
 
-// Іконка
 const DropdownIndicator = (props) => {
-  const styleObj = {
-    transform: props.selectProps.menuIsOpen ? "rotate(180deg)" : "rotate(0deg)",
-    transition: "transform 0.2s ease",
-  };
+  const isOpen = props.selectProps.menuIsOpen;
+
+  const styleObj = isOpen ? "isOpen" : "isClose";
+
   return (
     <components.DropdownIndicator {...props}>
       <Icon width={16} height={16} name="arrow-down" styleCss={styleObj} />
@@ -71,6 +72,19 @@ export default function SelectPrice({
   onChange,
 }) {
   const [hoveredOption, setHoveredOption] = useState(null);
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const selectRef = useRef(null);
+
+  // Закриття при кліку поза селектом
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (selectRef.current && !selectRef.current.contains(event.target)) {
+        setMenuIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const Option = (props) => (
     <components.Option
@@ -85,7 +99,7 @@ export default function SelectPrice({
     </components.Option>
   );
 
-  // ⚡️ Redux має отримати тільки число
+  // ⚡️ Redux отримує тільки число
   const handleChange = (selected) => {
     onChange(
       selected ? { value: selected.value, label: selected.label } : null
@@ -93,23 +107,28 @@ export default function SelectPrice({
   };
 
   return (
-    <Select
-      options={options}
-      value={value}
-      onChange={handleChange}
-      classNamePrefix="react-select"
-      placeholder={placeHolderValue}
-      menuPlacement="auto"
-      maxMenuHeight={200}
-      components={{
-        DropdownIndicator,
-        IndicatorSeparator: () => null,
-        Option,
-        ValueContainer,
-      }}
-      styles={customStyles}
-      hoveredOption={hoveredOption}
-      isSearchable={false}
-    />
+    <div ref={selectRef}>
+      <Select
+        options={options}
+        value={value}
+        onChange={handleChange}
+        classNamePrefix="react-select"
+        placeholder={placeHolderValue}
+        menuPlacement="auto"
+        maxMenuHeight={200}
+        menuIsOpen={menuIsOpen}
+        onMenuOpen={() => setMenuIsOpen(true)}
+        onMenuClose={() => setMenuIsOpen(false)}
+        components={{
+          DropdownIndicator,
+          IndicatorSeparator: () => null,
+          Option,
+          ValueContainer,
+        }}
+        styles={customStyles}
+        hoveredOption={hoveredOption}
+        isSearchable={false}
+      />
+    </div>
   );
 }
