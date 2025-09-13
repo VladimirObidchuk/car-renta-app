@@ -1,0 +1,78 @@
+.content {
+  display: flex;
+  flex-direction: row;
+  gap: 72px;
+  margin-bottom: 104px;
+}
+.leftSide {
+  display: flex;
+  flex-direction: column;
+}
+.leftSideTop {
+  width: 640px;
+  height: 512px;
+}
+.imgLeftSide {
+  border-radius: 19px;
+}
+.rightSide {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 68px;
+}
+.detailTop {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.detailItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.detailTitle {
+  gap: 8px;
+}
+.titleDetails {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  text-align: center;
+  color: var(--color-text);
+}
+.detailLocation {
+  gap: 4px;
+}
+.locationItem {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-text);
+}
+.locationItenMileag {
+  margin-left: 8px;
+}
+.detailsText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-text);
+}
+.icon {
+  fill: var(--color-text);
+  stroke: 1px var(--color-text);
+}
+.renteItem {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  color: var(--bg-color-btn);
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+.carInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 110px;
+}

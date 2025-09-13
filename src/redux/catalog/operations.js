@@ -8,7 +8,6 @@ export const fetchCatalogsCars = createAsyncThunk(
       const res = await apiClient.get("/cars", {
         params: { page, ...filters },
       });
-      console.log("🚀 ~ res:", res);
       return res.data;
     } catch (e) {
       return thunkApi.rejectWithValue(e.message);
