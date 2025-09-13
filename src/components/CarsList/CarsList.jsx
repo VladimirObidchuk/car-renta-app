@@ -12,6 +12,7 @@ import { selectFiltersQuery } from "../../redux/filter/selectors";
 import { fetchCatalogsCars } from "../../redux/catalog/operations";
 import CarItem from "../CarItem/CarItem";
 import Buttom from "../Buttom/Buttom";
+import NoResults from "../NoResults/NoResults";
 
 export default function CarsList() {
   const dispatch = useDispatch();
@@ -32,6 +33,9 @@ export default function CarsList() {
       dispatch(fetchCatalogsCars({ page: page + 1, filters }));
     }
   };
+  if (!isLoading && cars.length === 0) {
+    return <NoResults />;
+  }
   return (
     <>
       {cars.length > 0 && (
