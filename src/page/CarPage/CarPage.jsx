@@ -8,13 +8,13 @@ import Image from "../../components/Image/Image";
 import clsx from "clsx";
 import Icon from "../../components/Icon/Icon";
 import CarInfo from "../../components/CarInfo/CarInfo";
+import BookingForm from "../../components/BookingForm/BookingForm";
 
 export default function CarPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
 
   const car = useSelector(selectCarForId);
-  console.log("🚀 ~ car:", car);
   const {
     img,
     model,
@@ -75,7 +75,9 @@ export default function CarPage() {
             styleCss={style.imgLeftSide}
           />
         </div>
-        <div className={style.leftSideBottom}></div>
+        <div className={style.leftSideBottom}>
+          <BookingForm cardId={id} />
+        </div>
       </div>
       <div className={style.rightSide}>
         <div className={style.detail}>

@@ -7,3 +7,5 @@ export default function Buttom({ type, onClick, value, styleCss }) {
     </button>
   );
 }
+
+//  <Buttom type="submit" disabled={isSubmitting} value="Send" />
