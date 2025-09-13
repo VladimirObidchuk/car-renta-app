@@ -76,11 +76,10 @@ export default function Selector({
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const selectRef = useRef(null);
 
-  // Закриття при кліку поза селектом
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (selectRef.current && !selectRef.current.contains(event.target)) {
-        setMenuIsOpen(false); // просто закриваємо меню
+        setMenuIsOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);

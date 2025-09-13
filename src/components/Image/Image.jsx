@@ -1,6 +1,3 @@
-import clsx from "clsx";
-import style from "./Image.module.css";
-
 export default function Image({ path, alt, width, height, styleCss }) {
   return (
     <>
@@ -9,7 +6,7 @@ export default function Image({ path, alt, width, height, styleCss }) {
         alt={alt}
         width={width}
         height={height}
-        className={clsx(style.image, styleCss)}
+        className={styleCss}
       />
     </>
   );

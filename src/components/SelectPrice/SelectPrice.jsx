@@ -46,18 +46,17 @@ const DropdownIndicator = (props) => {
   );
 };
 
-// Кастомний ValueContainer (hover/вибір з "To $")
 const ValueContainer = ({ children, ...props }) => {
   const { getValue, selectProps, hasValue } = props;
   const hoveredOption = selectProps.hoveredOption;
 
   let display;
   if (hoveredOption) {
-    display = `To $${hoveredOption.label}`; // при hover
+    display = `To $${hoveredOption.label}`;
   } else if (hasValue) {
-    display = `To $${getValue()[0]?.label}`; // при виборі
+    display = `To $${getValue()[0]?.label}`;
   } else {
-    display = props.selectProps.placeholder; // placeholder
+    display = props.selectProps.placeholder;
   }
 
   return (
@@ -75,7 +74,6 @@ export default function SelectPrice({
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const selectRef = useRef(null);
 
-  // Закриття при кліку поза селектом
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (selectRef.current && !selectRef.current.contains(event.target)) {
@@ -99,7 +97,6 @@ export default function SelectPrice({
     </components.Option>
   );
 
-  // ⚡️ Redux отримує тільки число
   const handleChange = (selected) => {
     onChange(
       selected ? { value: selected.value, label: selected.label } : null

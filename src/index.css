@@ -78,7 +78,7 @@ ol {
 img {
   display: block;
   max-width: 100%;
-  border-style: none; /* IE10 fix */
+  border-style: none;
 }
 
 .button:focus:not(:focus-visible) {
