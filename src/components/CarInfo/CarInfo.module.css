@@ -16,3 +16,9 @@
   color: var(--color-text);
   margin-bottom: 20px;
 }
+.rentaConditionText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-text);
+}
